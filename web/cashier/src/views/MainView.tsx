@@ -14,9 +14,9 @@ const AppContainer = styled.div`
 `;
 
 const AppContent = styled.div`
-  margin-left: 50px;
+  margin-left: 14px;
   width: 100%;
-  padding: 20px 50px 20px 0;
+  padding: 5px 50px 20px 0;
   box-sizing: bordered-box;
 `;
 
