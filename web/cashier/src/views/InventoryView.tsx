@@ -120,7 +120,7 @@ const InventoryView: FunctionComponent<RouteComponentProps> = ({ path }) => {
     <Container>
       <HeaderContainer>
         <div className="left-side">
-          <h2>Inventory</h2>
+          <h3>Inventory</h3>
         </div>
         <div className="right-side">
           {

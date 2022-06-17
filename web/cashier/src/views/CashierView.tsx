@@ -7,11 +7,9 @@ import { clearPunchedItems, createOrder, punchItem, setBarcode } from '../api/ca
 import { TCreateOrderData } from '../api/cashier/types';
 import { popToast } from '../api/toast';
 import { ActionButton, ActionContainer } from '../components/Button';
-import SearchField from '../components/fields/SearchField';
 import OrderSuccess from '../dialogs/cashier/OrderSuccess';
 import Payment from '../dialogs/cashier/Payment';
 import { ShowShortcut } from '../dialogs/common';
-import InventoryTable from '../layouts/table/InventoryTable';
 import PurchaseTable from '../layouts/table/PurchaseTable';
 import { useCashrContext } from '../providers/cashier';
 import { useDialog } from '../providers/dialog';
@@ -25,37 +23,13 @@ const LeftSection = styled.div`
   width: 0; // 20px
   flex-direction: column;
   margin-right: 0px;
-  > .inventoryTable {
-    width: 100%;
-  }
-  > .productInfo {
-    width: 100%;
-    > .productName {
-      background-color: #F2F2F2;
-      padding: 8px;
-      border-radius: 4px;
-      font-size: 7px;
-      width: 75%;
-      height: 25px;
-      box-sizing: border-box;
-    }
-    > .productCode {
-      font-size: 8px;
-    }
-    > .description {
-      font-size: 8px
-    }
-    > .price {
-      font-size: 8px;
-    }
-  }
 `;
 
 const RightSection = styled.div`
   display: flex;
-  width: 65%;
-  border: 1px solid red;
+  width: 100%;
   height: calc(100vh - 100px);
+  max-height: 77vh;
   flex-direction: column;
   > .totalPricing {
     width: 100%;
@@ -63,7 +37,7 @@ const RightSection = styled.div`
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 50px;
+      font-size: 20px;
       padding-bottom: 30px;
       border-bottom: 1px solid;
     }
@@ -74,6 +48,7 @@ const RightSection = styled.div`
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    min-height: 77vh;
   }
 `;
 
@@ -82,25 +57,10 @@ const MetaSection = styled.div`
   flex-direction: column;
 `;
 
-const SearchSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  > div {
-    float: unset;
-    display: flex;
-  }
-  > hr {
-    margin: 15px 0;
-    border-bottom: 1px solid #000;
-    background: transparent;
-    color: transparent;
-  }
-`;
-
 const StyledActionContainer = styled(ActionContainer)`
   align-items: flex-end;
-  width: 32%;
+  width: 45%;
+  margin-top: 20px;
 `;
 
 const CashierView: FunctionComponent<RouteComponentProps> = () => {
@@ -185,19 +145,6 @@ const CashierView: FunctionComponent<RouteComponentProps> = () => {
           <MetaSection>
 
           </MetaSection>
-          {/* <div className="productInfo">
-            <h4 className="productName">{name}</h4>
-            <p className="productCode"><strong>Product Code: </strong> {productCode}</p>
-            <p className="description"><strong>Description: </strong> {description}</p>
-            <p className="price"><strong>Points: </strong> {price} pts</p>
-          </div> */}
-          {/* <SearchSection>
-            <SearchField onChange={(s) => {}}/>
-            <hr/>
-          </SearchSection> */}
-          {/* <div className="inventoryTable">
-            <InventoryTable />
-          </div> */}
         </LeftSection>
         <RightSection>
           <div className="totalPricing">
