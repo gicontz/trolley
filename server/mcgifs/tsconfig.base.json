@@ -1,0 +1,20 @@
+{
+  "extends": "./common/node-ts-common-config/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@requests/*": ["./src/requests/*"],
+      "@mq/*": ["./src/mq/rabbitmq/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@errors/*": ["./src/errors/*"],
+      "@models/*": ["./src/database/mongoose/models/*"],
+      "@daos/*": ["./src/database/mongoose/daos/*"],
+      "@database/*": ["./src/database/mongoose/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@config/*": ["./src/config/*"],
+      "@apis/*": ["./src/apis/*"],
+      "@app/*": ["./src/*"]
+    }
+  }
+}

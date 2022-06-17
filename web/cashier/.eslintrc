@@ -1,0 +1,39 @@
+{
+  "extends": [
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "compat",
+    "prettier",
+    "simple-import-sort"
+  ],
+  "rules": {
+    "compat/compat": "warn",
+    "consistent-return": "warn",
+    "indent": "off",
+    "no-console": "error",
+    "simple-import-sort/imports": "warn",
+    "no-shadow": "off",
+    "prettier/prettier": "warn",
+    "quotes": "off",
+    "semi": "off",
+    "@typescript-eslint/semi": "error",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/quotes": ["error", "single", { "allowTemplateLiterals": true }]
+  },
+  "settings": {
+    "polyfills": ["fetch", "Promise"]
+  }
+}

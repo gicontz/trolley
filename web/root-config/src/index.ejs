@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MCGI Free Store</title>
+  <!--
+    Remove this if you only support browsers that support async/await.
+    This is needed by babel to share largeish helper code for compiling async/await in older
+    browsers. More information at https://github.com/single-spa/create-single-spa/issues/112
+  -->
+  <% if (isLocal) { %>
+    <script src="/node_modules/regenerator-runtime/runtime.js"></script>
+    <link rel="stylesheet" type="text/css" href="/src/styles/global.css" />
+  <% } else { %>
+    <script src="/scripts/runtime.js"></script>
+    <% } %>
+  <!--
+    This CSP allows any SSL-enabled host and for arbitrary eval(), but you should limit these directives further to increase your app's security.
+    Learn more about CSP policies at https://content-security-policy.com/#directive
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' http: localhost:* data: ; script-src 'unsafe-inline' 'unsafe-eval' http: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' http:; object-src 'none';">
+  <meta name="importmap-type" content="systemjs-importmap" />
+  <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
+  <!-- More info at https://github.com/joeldenning/import-map-overrides/blob/master/docs/configuration.md#domain-list -->
+  <!-- <meta name="import-map-overrides-domains" content="denylist:prod.example.com" /> -->
+
+  <!-- Shared dependencies go into this import map. Your shared dependencies must be of one of the following formats:
+
+    1. System.register (preferred when possible) - https://github.com/systemjs/systemjs/blob/master/docs/system-register.md
+    2. UMD - https://github.com/umdjs/umd
+    3. Global variable
+
+    More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
+  -->
+  
+  <% if (isLocal) { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "single-spa": "/node_modules/single-spa/lib/system/single-spa.min.js",
+          "react": "/node_modules/react/umd/react.production.min.js",
+          "react-dom": "/node_modules/react-dom/umd/react-dom.production.min.js"
+        }
+      }
+    </script>
+    <link rel="preload" href="/node_modules/single-spa/lib/system/single-spa.min.js" as="script">
+  <% } else { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "single-spa": "/scripts/single-spa.min.js",
+          "react": "/scripts/react.production.min.js",
+          "react-dom": "/scripts/react-dom.production.min.js"
+        }
+      }
+    </script>
+    <link rel="preload" href="/scripts/single-spa.min.js" as="script">
+  <% } %>
+
+  <!-- Add your organization's prod import map URL to this script's src  -->
+  <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
+
+  <% if (isLocal) { %>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "@mcgifs/root-config": "//localhost:<%= env.PORT %>/mcgifs-root-config.js",
+        "@mcgifs/cashier": "//localhost:8500/mcgifs-cashier.js"
+      }
+    }
+  </script>
+  <% } else { %>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "@mcgifs/root-config": "//localhost:<%= env.PORT %>/mcgifs-root-config.js",
+        "@mcgifs/cashier": "//localhost:8500/mcgifs-cashier.js"
+      }
+    }
+  </script>
+  <% } %>
+
+  <!--
+    If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
+    Learn more about why at https://single-spa.js.org/docs/ecosystem-angular/#zonejs
+  -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script> -->
+
+  <% if (isLocal) { %>
+    <script src="/node_modules/import-map-overrides/dist/import-map-overrides.js"></script>
+    <script src="/node_modules/systemjs/dist/system.js"></script>
+    <script src="/node_modules/systemjs/dist/extras/amd.js"></script>
+  <% } else { %>
+    <script src="/scripts/system.min.js"></script>
+    <script src="/scripts/amd.min.js"></script>
+  <% } %>
+</head>
+<body>
+  <main></main>
+  <script>
+    System.import('@mcgifs/root-config');
+  </script>
+  <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
+</body>
+</html>
