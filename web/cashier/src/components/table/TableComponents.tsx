@@ -18,9 +18,9 @@ export const HeaderCell = styled(({...other}) => (
   &.head {
     background-color: #EB448C;
     padding: 0;
-    font-size: 15px;
+    font-size: 5px;
     font-family: Lato;
-    height: 45px;
+    height: 25px;
     color: white;
     z-index: 1;
   }

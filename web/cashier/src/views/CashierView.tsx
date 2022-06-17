@@ -22,9 +22,9 @@ const Container = styled.div`
 
 const LeftSection = styled.div`
   display: flex;
-  width: 30%;
+  width: 0; // 20px
   flex-direction: column;
-  margin-right: 50px;
+  margin-right: 0px;
   > .inventoryTable {
     width: 100%;
   }
@@ -32,12 +32,21 @@ const LeftSection = styled.div`
     width: 100%;
     > .productName {
       background-color: #F2F2F2;
-      padding: 15px;
+      padding: 8px;
       border-radius: 4px;
-      font-size: 30px;
-      width: 100%;
-      height: 60px;
+      font-size: 7px;
+      width: 75%;
+      height: 25px;
       box-sizing: border-box;
+    }
+    > .productCode {
+      font-size: 8px;
+    }
+    > .description {
+      font-size: 8px
+    }
+    > .price {
+      font-size: 8px;
     }
   }
 `;
@@ -45,6 +54,7 @@ const LeftSection = styled.div`
 const RightSection = styled.div`
   display: flex;
   width: 65%;
+  border: 1px solid red;
   height: calc(100vh - 100px);
   flex-direction: column;
   > .totalPricing {
@@ -75,11 +85,10 @@ const MetaSection = styled.div`
 const SearchSection = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
+  margin-top: 20px;
   > div {
     float: unset;
     display: flex;
-    justify-content: center;
   }
   > hr {
     margin: 15px 0;
@@ -176,19 +185,19 @@ const CashierView: FunctionComponent<RouteComponentProps> = () => {
           <MetaSection>
 
           </MetaSection>
-          <div className="productInfo">
+          {/* <div className="productInfo">
             <h4 className="productName">{name}</h4>
             <p className="productCode"><strong>Product Code: </strong> {productCode}</p>
             <p className="description"><strong>Description: </strong> {description}</p>
             <p className="price"><strong>Points: </strong> {price} pts</p>
-          </div>
-          <SearchSection>
+          </div> */}
+          {/* <SearchSection>
             <SearchField onChange={(s) => {}}/>
             <hr/>
-          </SearchSection>
-          <div className="inventoryTable">
+          </SearchSection> */}
+          {/* <div className="inventoryTable">
             <InventoryTable />
-          </div>
+          </div> */}
         </LeftSection>
         <RightSection>
           <div className="totalPricing">

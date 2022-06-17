@@ -8,8 +8,9 @@ export const SearchContainer = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  width: 350px;
-  height: 45px;
+  width: 100px;
+  height: 20px;
+  font-size: 10px;
   padding-left: 33px;
   border: 1px solid #b2b2b2;
   border-radius: 26px;

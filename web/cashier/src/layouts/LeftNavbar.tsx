@@ -2,7 +2,7 @@ import { Link } from '@reach/router';
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
-import { ReactComponent as AppLogo } from '../assets/appLogo.svg';
+import AppLogoImg from '../assets/TrolleyLogo.png';
 import { ReactComponent as TagIcon } from '../assets/storeTagIcon.svg';
 import { navs } from './navigations';
 
@@ -12,7 +12,7 @@ const Container = styled.div`
   flex-direction: column;
   background-color: ${({ theme }) => theme.app.header.normal.BG_COLOR};
   box-shadow: 0px 4px 5px ${({ theme }) => theme.app.header.normal.BOX_SHADOW};
-  width: 396px;
+  width: 176px;
   height: 100%;
   left: 0;
   top: 0;
@@ -29,6 +29,12 @@ const NavHeader = styled.div`
     align-items: center;
   }
 `;
+
+const AppLogo = styled.img`
+  width: 75px;
+  padding: 10px;
+  box-sizing: border-box;
+`
 
 const NavMenu = styled.div`
   display: flex;
@@ -47,6 +53,7 @@ const ToggleContainer = styled.div`
 
 const StyledLink = styled(Link)`
   padding: 12px 33px;
+  font-size: 0.5rem;
   color: ${({ theme }) => theme.app.header.normal.TEXT_COLOR};
   text-decoration: none;
   &:hover {
@@ -64,13 +71,13 @@ const LeftNavbar: FunctionComponent = () => {
   return (
     <Container>
       <NavHeader>
-        <div className="toggle-container">
+        {/* <div className="toggle-container">
           <ToggleContainer>
             <TagIcon />
           </ToggleContainer>
-        </div>
+        </div> */}
         <div className="logo-container">
-          <AppLogo />
+          <AppLogo src={AppLogoImg} />
         </div>
       </NavHeader>
       <NavMenu>
