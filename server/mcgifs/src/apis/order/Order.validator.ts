@@ -27,13 +27,15 @@ export default class OrderValidator implements IOrderValidator {
           qty: Joi.number().required(),
         }),
       ),
+      paidAmt: Joi.number().required(),
     });
 
     try {
-      const { items } = await bodySchema.validateAsync(req.body);
+      const { items, paidAmt } = await bodySchema.validateAsync(req.body);
 
       (req as IValidatedRequest<TCreateOrderData>).validatedData = {
         items,
+        paidAmt,
       };
 
       next();
@@ -85,40 +87,6 @@ export default class OrderValidator implements IOrderValidator {
       );
 
       (req as IValidatedRequest<TGetOrderListData>).validatedData = validatedData;
-
-      next();
-    } catch (e) {
-      next(e);
-    }
-  };
-
-  public updateOrder = async (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ) => {
-    const paramsSchema = Joi.object().keys({
-      orderId: Joi.string().hex().length(24).required(),
-    });
-    const bodySchema = Joi.object().keys({
-      items: Joi.array().items(
-        Joi.object().keys({
-          itemId: Joi.string().required(),
-          qty: Joi.number().required(),
-        }),
-      ),
-    });
-
-    try {
-      const [{ orderId }, { items }] = await Promise.all([
-        paramsSchema.validateAsync(req.params),
-        bodySchema.validateAsync(req.body),
-      ]);
-
-      (req as IValidatedRequest<TUpdateOrderData>).validatedData = {
-        orderId,
-        items,
-      };
 
       next();
     } catch (e) {

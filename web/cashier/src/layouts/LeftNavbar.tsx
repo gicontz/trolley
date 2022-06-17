@@ -1,15 +1,13 @@
 import { Link } from '@reach/router';
-import React, { FunctionComponent, useContext, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
-import { getItems } from '../api/inventory';
 import { ReactComponent as AppLogo } from '../assets/appLogo.svg';
 import { ReactComponent as TagIcon } from '../assets/storeTagIcon.svg';
-import InventoryContext from '../providers/inventory';
 import { navs } from './navigations';
 
 const Container = styled.div`
-  position: fixed;
+  position: sticky;
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.app.header.normal.BG_COLOR};
@@ -55,14 +53,13 @@ const StyledLink = styled(Link)`
     color: ${({ theme }) => theme.app.header.hover.TEXT_COLOR};
     background-color: ${({ theme }) => theme.app.header.hover.BG_COLOR};
   }
+  &[aria-current="page"] {
+    color: ${({ theme }) => theme.app.header.hover.TEXT_COLOR};
+    background-color: ${({ theme }) => theme.app.header.hover.BG_COLOR};
+  }
 `;
 
 const LeftNavbar: FunctionComponent = () => {
-  const { invStore, invDispatch } = useContext(InventoryContext);
-
-  useEffect(() => {
-    getItems(invDispatch);
-  }, []);
 
   return (
     <Container>

@@ -7,6 +7,7 @@ import {
   TGetItemListData,
   TUpdateItemData,
   TDeleteItemData,
+  TMultipleDeleteItemData,
 } from './Inventory.data';
 
 export const INVENTORY_TYPES = {
@@ -44,6 +45,11 @@ export interface IInventoryValidator {
     res: Response,
     next: NextFunction,
   ) => Promise<void>;
+  deleteItems: (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => Promise<void>;
 }
 
 export interface IInventoryController {
@@ -68,6 +74,11 @@ export interface IInventoryController {
     res: Response,
     next: NextFunction,
   ) => Promise<void>;
+  deleteItems: (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => Promise<void>;
 }
 
 export interface IInventoryService {
@@ -76,6 +87,7 @@ export interface IInventoryService {
   getItemList: (data: TGetItemListData) => Promise<IItem[]>;
   updateItem: (data: TUpdateItemData) => Promise<void>;
   deleteItem: (data: TDeleteItemData) => Promise<void>;
+  deleteItems: (data: TMultipleDeleteItemData) => Promise<void>;
 }
 
 export interface IInventoryDao {
@@ -84,4 +96,5 @@ export interface IInventoryDao {
   getItemList: (data: TGetItemListData) => Promise<IItem[]>;
   updateItem: (data: TUpdateItemData) => Promise<void>;
   deleteItem: (data: TDeleteItemData) => Promise<void>;
+  deleteItems: (data: TMultipleDeleteItemData) => Promise<void>;
 }

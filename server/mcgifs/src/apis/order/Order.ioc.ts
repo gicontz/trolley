@@ -7,6 +7,7 @@ import {
   TGetOrderListData,
   TUpdateOrderData,
   TDeleteOrderData,
+  TNewOrderData,
 } from './Order.data';
 
 export const ORDER_TYPES = {
@@ -34,11 +35,6 @@ export interface IOrderValidator {
     res: Response,
     next: NextFunction,
   ) => Promise<void>;
-  updateOrder: (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ) => Promise<void>;
   deleteOrder: (
     req: Request,
     res: Response,
@@ -58,11 +54,6 @@ export interface IOrderController {
     res: Response,
     next: NextFunction,
   ) => Promise<void>;
-  updateOrder: (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ) => Promise<void>;
   deleteOrder: (
     req: Request,
     res: Response,
@@ -71,17 +62,16 @@ export interface IOrderController {
 }
 
 export interface IOrderService {
-  createOrder: (data: TCreateOrderData) => Promise<IOrder>;
+  createOrder: (data: TCreateOrderData) => Promise<IOrder | undefined>;
   getOrder: (data: TGetOrderData) => Promise<IOrder>;
   getOrderList: (data: TGetOrderListData) => Promise<IOrder[]>;
-  updateOrder: (data: TUpdateOrderData) => Promise<void>;
+  getOrderedItems: () => Promise<string[]>;
   deleteOrder: (data: TDeleteOrderData) => Promise<void>;
 }
 
 export interface IOrderDao {
-  createOrder: (data: TCreateOrderData) => Promise<IOrder>;
+  createOrder: (data: TNewOrderData) => Promise<IOrder>;
   getOrder: (data: TGetOrderData) => Promise<IOrder | null>;
   getOrderList: (data: TGetOrderListData) => Promise<IOrder[]>;
-  updateOrder: (data: TUpdateOrderData) => Promise<void>;
   deleteOrder: (data: TDeleteOrderData) => Promise<void>;
 }

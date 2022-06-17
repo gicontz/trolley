@@ -25,16 +25,22 @@ export interface States {
   normal: Attributes;
 }
 
+type ButtonStates = Record<'light' | 'dark' , States>;
+
 export type AppColors = Record<'body' | 'header', States>;
 export type TextColors = Record<'title' | 'body', States>;
 export type CardColors = Record<'default' | 'header', States> & {
   image?: string;
 };
-export type ButtonColors = Record<'content' | 'outline', States>;
+export type ButtonColors = Record<'contained' | 'outline' | 'action', ButtonStates>;
+export type ProgressColors = Record<'linear' | 'circular', States>;
+export type FormColors = Record<'field' | 'label' | 'text', States>;
 
 export interface Theme {
   app: AppColors;
-  //   button: ButtonColors;
+  button: ButtonColors;
+  progress: ProgressColors;
+  form: FormColors;
   //   card: CardColors;
   //   text: TextColors;
 }

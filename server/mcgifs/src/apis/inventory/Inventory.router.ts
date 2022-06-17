@@ -41,7 +41,7 @@ export default class OrderRouter implements IInventoryRouter {
     );
 
     this.router.get(
-      `${this.path}/:itemId`,
+      `${this.path}/item`,
       this.inventoryValidator.getItem,
       this.inventoryController.getItem,
     );
@@ -62,6 +62,12 @@ export default class OrderRouter implements IInventoryRouter {
       `${this.path}/:itemId`,
       this.inventoryValidator.deleteItem,
       this.inventoryController.deleteItem,
+    );
+
+    this.router.post(
+      `${this.path}/delete/multiple`,
+      this.inventoryValidator.deleteItems,
+      this.inventoryController.deleteItems,
     );
   };
 }

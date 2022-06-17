@@ -29,13 +29,11 @@ export default class OrderController implements IOrderController {
     try {
       const { validatedData } = req as IValidatedRequest<TCreateOrderData>;
 
-      const ems = await this.orderService.createOrder(validatedData);
+      const order = await this.orderService.createOrder(validatedData);
 
       res.status(200).json({
         message: 'Order data successfully created.',
-        data: {
-          ems,
-        },
+        order,
       });
     } catch (e) {
       next(e);
@@ -67,31 +65,11 @@ export default class OrderController implements IOrderController {
     try {
       const { validatedData } = req as IValidatedRequest<TGetOrderListData>;
 
-      const emsList = await this.orderService.getOrderList(validatedData);
+      const orders = await this.orderService.getOrderList(validatedData);
 
       res.status(200).json({
         message: 'Order data list successfully retrieved.',
-        data: {
-          emsList,
-        },
-      });
-    } catch (e) {
-      next(e);
-    }
-  };
-
-  public updateOrder = async (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ) => {
-    try {
-      const { validatedData } = req as IValidatedRequest<TUpdateOrderData>;
-
-      await this.orderService.updateOrder(validatedData);
-
-      res.status(200).json({
-        message: 'Order data successfully updated.',
+        orders,
       });
     } catch (e) {
       next(e);

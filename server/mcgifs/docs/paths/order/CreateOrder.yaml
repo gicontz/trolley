@@ -1,5 +1,5 @@
 paths:
-  /order:
+  /order/create:
     post:
       tags:
         - Order

@@ -15,6 +15,7 @@ import {
   TGetItemListData,
   TUpdateItemData,
   TDeleteItemData,
+  TMultipleDeleteItemData,
 } from './Inventory.data';
 
 @injectable()
@@ -57,9 +58,7 @@ export default class InventoryController implements IInventoryController {
 
       res.status(200).json({
         message: 'Item data successfully retrieved.',
-        data: {
-          data,
-        },
+        data
       });
     } catch (e) {
       next(e);
@@ -115,6 +114,24 @@ export default class InventoryController implements IInventoryController {
 
       res.status(200).json({
         message: 'Item data successfully deleted.',
+      });
+    } catch (e) {
+      next(e);
+    }
+  };
+
+  public deleteItems = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => {
+    try {
+      const { validatedData } = req as IValidatedRequest<TMultipleDeleteItemData>;
+
+      await this.inventoryService.deleteItems(validatedData);
+
+      res.status(200).json({
+        message: 'Items successfully deleted.',
       });
     } catch (e) {
       next(e);

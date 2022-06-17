@@ -41,13 +41,15 @@ export type TCreateItemData = {
 };
 
 export type TGetItemData = {
-  itemId: string;
+  itemId?: string;
+  productCode?: string;
 };
 
 export type TGetItemListData = {
   category?: TItemCategory;
   priceStart?: string;
   priceEnd?: string;
+  ids?: string[];
 };
 
 export type TUpdateItemData = {
@@ -62,4 +64,8 @@ export type TUpdateItemData = {
 
 export type TDeleteItemData = {
   itemId: string;
+};
+
+export type TMultipleDeleteItemData = {
+  itemIds: string[];
 };

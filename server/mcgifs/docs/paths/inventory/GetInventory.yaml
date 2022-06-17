@@ -1,5 +1,5 @@
 paths:
-  /inventory/{itemId}:
+  /inventory/item:
     get:
       tags:
         - Inventory
@@ -7,10 +7,14 @@ paths:
       description: |
         This will retrieve an Item entry.
       parameters:
-        - in: path
+        - in: query
           name: itemId
           description: The ID of the Item entry to retrieve.
-          required: true
+          schema:
+            type: string
+        - in: query
+          name: productCode
+          description: The ID of the Item entry to retrieve.
           schema:
             type: string
       responses:
@@ -29,40 +33,36 @@ paths:
                     description: The data associated with this response.
                     type: object
                     properties:
-                      ems:
-                        description: The retrieved Item object.
-                        type: object
-                        properties:
-                          project:
-                            description: The project that the Item belongs to.
-                            type: string
-                          name:
-                            description: The name of the Item.
-                            type: string
-                          ip:
-                            description: The IP address of the Item.
-                            type: string
-                          type:
-                            description: The connection type of the Item.
-                            type: string
-                            enum:
-                              - LSM
-                              - USM
-                            example: LSM
-                          username:
-                            description: The username used to connect to the Item.
-                            type: string
-                          password:
-                            description: The password used to connect to the Item.
-                            type: string
-                          createdAt:
-                            description: The timestamp of when this Item object has been created.
-                            type: string
-                            format: date-time
-                          updatedAt:
-                            description: The timestamp of when this Item object has been updated.
-                            type: string
-                            format: date-time
+                      project:
+                        description: The project that the Item belongs to.
+                        type: string
+                      name:
+                        description: The name of the Item.
+                        type: string
+                      ip:
+                        description: The IP address of the Item.
+                        type: string
+                      type:
+                        description: The connection type of the Item.
+                        type: string
+                        enum:
+                          - LSM
+                          - USM
+                        example: LSM
+                      username:
+                        description: The username used to connect to the Item.
+                        type: string
+                      password:
+                        description: The password used to connect to the Item.
+                        type: string
+                      createdAt:
+                        description: The timestamp of when this Item object has been created.
+                        type: string
+                        format: date-time
+                      updatedAt:
+                        description: The timestamp of when this Item object has been updated.
+                        type: string
+                        format: date-time
         404:
           $ref: '#/components/responses/NotFoundError'
         500:

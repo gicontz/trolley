@@ -1,33 +1,33 @@
 import { Container } from 'inversify';
 
 import {
-  INVENTORY_TYPES,
-  IInventoryRouter,
-  IInventoryValidator,
-  IInventoryController,
-  IInventoryService,
-  IInventoryDao,
-} from '@apis/inventory/Inventory.ioc';
-import InventoryRouter from '@apis/inventory/Inventory.router';
-import InventoryValidator from '@apis/inventory/Inventory.validator';
-import InventoryController from '@apis/inventory/Inventory.controller';
-import InventoryService from '@apis/inventory/Inventory.service';
-import InventoryDao from '@daos/inventory/Inventory.dao';
+  ORDER_TYPES,
+  IOrderRouter,
+  IOrderValidator,
+  IOrderController,
+  IOrderService,
+  IOrderDao,
+} from '@apis/order/Order.ioc';
+import OrderRouter from '@apis/order/Order.router';
+import OrderValidator from '@apis/order/Order.validator';
+import OrderController from '@apis/order/Order.controller';
+import OrderService from '@apis/order/Order.service';
+import OrderDao from '@daos/order/Order.dao';
 
 export default (iocContainer: Container) => {
   iocContainer
-    .bind<IInventoryRouter>(INVENTORY_TYPES.iInventoryRouter)
-    .to(InventoryRouter);
+    .bind<IOrderRouter>(ORDER_TYPES.iOrderRouter)
+    .to(OrderRouter);
   iocContainer
-    .bind<IInventoryValidator>(INVENTORY_TYPES.iInventoryValidator)
-    .to(InventoryValidator);
+    .bind<IOrderValidator>(ORDER_TYPES.iOrderValidator)
+    .to(OrderValidator);
   iocContainer
-    .bind<IInventoryController>(INVENTORY_TYPES.iInventoryController)
-    .to(InventoryController);
+    .bind<IOrderController>(ORDER_TYPES.iOrderController)
+    .to(OrderController);
   iocContainer
-    .bind<IInventoryService>(INVENTORY_TYPES.iInventoryService)
-    .to(InventoryService);
+    .bind<IOrderService>(ORDER_TYPES.iOrderService)
+    .to(OrderService);
   iocContainer
-    .bind<IInventoryDao>(INVENTORY_TYPES.iInventoryDao)
-    .to(InventoryDao);
+    .bind<IOrderDao>(ORDER_TYPES.iOrderDao)
+    .to(OrderDao);
 };

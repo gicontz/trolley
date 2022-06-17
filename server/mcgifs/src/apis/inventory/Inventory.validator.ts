@@ -12,6 +12,7 @@ import {
   TGetItemListData,
   TUpdateItemData,
   TDeleteItemData,
+  TMultipleDeleteItemData,
 } from './Inventory.data';
 
 @injectable()
@@ -58,15 +59,17 @@ export default class InventoryValidator implements IInventoryValidator {
   };
 
   public getItem = async (req: Request, res: Response, next: NextFunction) => {
-    const paramsSchema = Joi.object().keys({
-      itemId: Joi.string().hex().length(24).required(),
+    const querySchema = Joi.object().keys({
+      itemId: Joi.string().hex().length(24),
+      productCode: Joi.string(),
     });
 
     try {
-      const { itemId } = await paramsSchema.validateAsync(req.params);
+      const { itemId, productCode } = await querySchema.validateAsync(req.query);
 
       (req as IValidatedRequest<TGetItemData>).validatedData = {
         itemId,
+        productCode,
       };
 
       next();
@@ -171,6 +174,28 @@ export default class InventoryValidator implements IInventoryValidator {
 
       (req as IValidatedRequest<TDeleteItemData>).validatedData = {
         itemId,
+      };
+
+      next();
+    } catch (e) {
+      next(e);
+    }
+  };
+
+  public deleteItems = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => {
+    const bodySchema = Joi.object().keys({
+      itemIds: Joi.array().items(Joi.string().hex().length(24)).required(),
+    });
+
+    try {
+      const { itemIds } = await bodySchema.validateAsync(req.body);
+
+      (req as IValidatedRequest<TMultipleDeleteItemData>).validatedData = {
+        itemIds,
       };
 
       next();

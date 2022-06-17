@@ -50,12 +50,6 @@ export default class OrderRouter implements IOrderRouter {
       this.orderController.getOrderList,
     );
 
-    this.router.patch(
-      `${this.path}/:orderId`,
-      this.orderValidator.updateOrder,
-      this.orderController.updateOrder,
-    );
-
     this.router.delete(
       `${this.path}/:orderId`,
       this.orderValidator.deleteOrder,

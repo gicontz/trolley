@@ -1,6 +1,9 @@
 export type TItemOrder = {
   itemId: string;
   qty: number;
+  itemName?: string;
+  itemDesc?: string;
+  productCode?: string;
 };
 
 export interface IOrder {
@@ -8,10 +11,21 @@ export interface IOrder {
   items: TItemOrder[];
   totalQty: number;
   totalAmt: number;
+  paidAmt: number;
+  change: number;
 }
 
 export type TCreateOrderData = {
   items: TItemOrder[];
+  paidAmt: number;
+};
+
+export type TNewOrderData = {
+  items: TItemOrder[];
+  totalQty: number;
+  totalAmt: number;
+  paidAmt: number;
+  change: number
 };
 
 export type TUpdateOrderData = {
@@ -30,4 +44,5 @@ export type TGetOrderData = {
 export type TGetOrderListData = {
   qty?: number;
   createdDate?: string;
+  ids?: string[];
 };

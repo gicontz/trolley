@@ -14,6 +14,10 @@ import {
   INVENTORY_TYPES,
   IInventoryRouter,
 } from '@apis/inventory/Inventory.ioc';
+import {
+  ORDER_TYPES,
+  IOrderRouter,
+} from '@apis/order/Order.ioc';
 
 https.globalAgent.options.rejectUnauthorized =
   config.app.REJECT_UNAUTHORIZED_CERTIFICATES;
@@ -43,6 +47,7 @@ const app = new App({
   routers: [
     iocContainer.get<ISwaggerRouter>(SWAGGER_TYPES.iSwaggerRouter),
     iocContainer.get<IInventoryRouter>(INVENTORY_TYPES.iInventoryRouter),
+    iocContainer.get<IOrderRouter>(ORDER_TYPES.iOrderRouter),
   ],
   errorMiddlewares: [errorMiddleware],
 });

@@ -8,6 +8,7 @@ import {
   TUpdateItemData,
   TDeleteItemData,
   TGetItemListData,
+  TMultipleDeleteItemData,
 } from '@apis/inventory/Inventory.data';
 
 import Inventory from '@models/inventory/Inventory.model';
@@ -25,16 +26,24 @@ export default class InventoryDao implements IInventoryDao {
   };
 
   public getItem = async (data: TGetItemData) => {
-    const { itemId } = data;
+    const { itemId, productCode } = data;
 
-    const itemDocument = await Inventory.findById(itemId);
+    if (itemId) {
+      const itemDocument = await Inventory.findById(itemId);
+      return itemDocument ? itemDocument.toObject() : null;
+    }
 
+    const itemDocument = await Inventory.findOne({productCode});
     return itemDocument ? itemDocument.toObject() : null;
   };
 
   public getItemList = async (data: TGetItemListData) => {
+    const { ids } = data;
+    if (ids) {
+      const itemDocuments = await Inventory.find({ _id: { $in: ids }});
+      return itemDocuments.map((document) => document.toObject());
+    }
     const itemDocuments = await Inventory.find(data);
-
     return itemDocuments.map((document) => document.toObject());
   };
 
@@ -48,5 +57,11 @@ export default class InventoryDao implements IInventoryDao {
     const { itemId } = data;
 
     await Inventory.findByIdAndDelete(itemId);
+  };
+
+  public deleteItems = async (data: TMultipleDeleteItemData) => {
+    const { itemIds } = data;
+
+    await Inventory.deleteMany({_id: { $in: [...itemIds] }});
   };
 }

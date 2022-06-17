@@ -11,7 +11,6 @@ const itemSchema = new Schema<IItemDocument>(
     name: {
       type: String,
       required: true,
-      unique: true,
     },
     category: {
       type: String,
