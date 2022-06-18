@@ -129,7 +129,7 @@ const InventoryView: FunctionComponent<RouteComponentProps> = ({ path }) => {
               <TrashIcon />
             </IconBtn>
           }
-          <IconBtn onClick={handleNewItem}>
+          <IconBtn shade="dark" onClick={handleNewItem}>
             <PlusIcon />
           </IconBtn>
           <SearchField onChange={handleSearch}/>
