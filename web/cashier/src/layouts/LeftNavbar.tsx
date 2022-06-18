@@ -12,7 +12,7 @@ const Container = styled.div`
   flex-direction: column;
   background-color: ${({ theme }) => theme.app.header.normal.BG_COLOR};
   box-shadow: 0px 4px 5px ${({ theme }) => theme.app.header.normal.BOX_SHADOW};
-  width: 176px;
+  width: 196px;
   height: 100%;
   left: 0;
   top: 0;
@@ -53,7 +53,7 @@ const ToggleContainer = styled.div`
 
 const StyledLink = styled(Link)`
   padding: 12px 33px;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   color: ${({ theme }) => theme.app.header.normal.TEXT_COLOR};
   text-decoration: none;
   &:hover {
@@ -71,11 +71,6 @@ const LeftNavbar: FunctionComponent = () => {
   return (
     <Container>
       <NavHeader>
-        {/* <div className="toggle-container">
-          <ToggleContainer>
-            <TagIcon />
-          </ToggleContainer>
-        </div> */}
         <div className="logo-container">
           <AppLogo src={AppLogoImg} />
         </div>

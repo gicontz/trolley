@@ -33,7 +33,7 @@ const PurchaseTable: FunctionComponent = () => {
                 <HeaderCell>Product Code</HeaderCell>
                 <HeaderCell>Product Name</HeaderCell>
                 <HeaderCell>Quantity</HeaderCell>
-                <HeaderCell>Amnt</HeaderCell>
+                <HeaderCell>Amount</HeaderCell>
               </TableRow>
             </TableHead>
             <TableBody>

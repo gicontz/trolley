@@ -7,11 +7,6 @@ export type TNav = {
 };
 
 export const navs: TNav[] = [
-  // {
-  //   id: 'DASHBOARD',
-  //   label: 'Dashboard',
-  //   href: APP_PATHS.HOME,
-  // },
   {
     id: 'CASHIER',
     label: 'Cashier',

@@ -9,7 +9,7 @@ export const SearchContainer = styled.div`
 
 export const SearchInput = styled.input`
   width: 100px;
-  height: 20px;
+  height: 27px;
   font-size: 10px;
   padding-left: 33px;
   border: 1px solid #b2b2b2;

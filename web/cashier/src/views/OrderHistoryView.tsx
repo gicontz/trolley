@@ -10,7 +10,7 @@ const OrderHistoryView: FunctionComponent<RouteComponentProps> = () => {
 
   return (
     <Container>
-      <h2>Order History</h2>
+      <h3>Order History</h3>
       <OrderHistoryTable />
     </Container>
   )
